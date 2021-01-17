@@ -1,5 +1,5 @@
 {
-  "name": "recipe-collector",
+  "name": "turntable",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.0.0-0",
@@ -17,6 +17,7 @@
     "react-dom": "^17.0.1",
     "react_ujs": "^2.6.1",
     "reactstrap": "^8.5.1",
+    "styled-components": "^5.2.1",
     "turbolinks": "^5.2.0",
     "webpack": "^4.42.0"
   },

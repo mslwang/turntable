@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div>
+      <div class="text-center" style="margin-top:1em">
+
+        <h2>Add Recipe</h2>
+
+        <%= form_with url: "/recipes", method: :post do |f| %>
+          <div class="field">
+            <%= f.label :title %><br />
+            <%= f.text_field :title, autocomplete: "title" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :author %><br />
+            <%= f.text_field :author, autocomplete: "author" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :photo %><br />
+            <%= f.file_field :photo %>
+          </div>
+        
+        <div class="field">
+            <%= f.label :desc %><br />
+            <%= f.text_area :desc, autocomplete: "desc" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Add Recipe" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

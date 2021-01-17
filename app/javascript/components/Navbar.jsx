@@ -6,51 +6,60 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText
+  Container,
 } from 'reactstrap';
 
 const NavigationBar = (props) => {
+
+  const { user } = props;
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const logIn = () => {
+    const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+    axios.get('/users/sign_in', { headers: {
+      'X-CSRF-Token': csrf,
+  }});
+  }
+
+  const logOut = async () => {
+    const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+    const res = await axios.delete('/users/sign_out', { headers: {
+      'X-CSRF-Token': csrf,
+  }}).catch(err => {
+      console.log(err)
+    });
+  }
+
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">recipe collector</NavbarBrand>
+        <NavbarBrand href="/">turntable</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-            </NavItem>
-          </Nav>
-          <UncontrolledDropdown inNavbar>
-              <DropdownToggle caret>
-                Settings
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>
-                  Option 1
-                </DropdownItem>
-                <DropdownItem>
-                  Option 2
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
+
+          {user ? <Container>
+
+                <Nav className="ml-auto" navbar> 
+                <NavLink href='/recipes/'>
+                        Add Recipe
+                      </NavLink>
+                  <NavLink
+                    href='/users/sign_out' data-method="delete" rel="nofollow">
                   Logout
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
+                  </NavLink>
+                </Nav>
+                </Container>: 
+                <Container>
+            <Nav>
+              <NavLink href="/users/sign_up">Sign Up</NavLink>
+              <NavLink href="/users/sign_in">Log In</NavLink>
+            </Nav>
+            </Container>
+            }
         </Collapse>
       </Navbar>
     </div>

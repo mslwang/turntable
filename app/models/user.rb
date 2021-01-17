@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :recipes, :dependent => :destroy
   mount_uploader :avatar, AvatarUploader
 
   # Include default devise modules. Others available are:

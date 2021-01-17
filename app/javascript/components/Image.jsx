@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 export default class Image extends Component {
  render(){
-  return( <img src={this.props.source} alt={this.props.text} /> )
+  return( <ImageComponent src={this.props.source} alt={this.props.text} /> )
  }
 }
+const ImageComponent = styled.img`
+	width: 75%;
+    height: 75%;
+    
+`;

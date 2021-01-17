@@ -30,6 +30,8 @@ gem 'figaro'
 
 gem 'react-rails'
 
+gem 'responders'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
