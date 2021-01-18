@@ -12,9 +12,9 @@ function RecipeCard(props) {
               return (
                 <Card 
                   key={index} 
-                  href={item.photo.medium.url}>
+                  href={item.photo.medium.url.split('?')[0]}>
                     <Centered>
-                    <Image source={item.photo.medium.url} text={item.title} />
+                    <Image source={item.photo.medium.url.split('?')[0]} text={item.title} />
                     </Centered>
 
                   <Title title={item.title} />
